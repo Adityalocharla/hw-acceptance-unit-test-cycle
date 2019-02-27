@@ -23,3 +23,13 @@ Then /I should see all the movies/ do
     step %{I should see "#{movie.title}"}
   end
 end
+
+
+Then /the director of "(.*)" should be "(.*)"/ do |string, string2|
+  
+  if Movie.find_by_title(string)[:director] == string2
+    
+  else
+    assert_equal string.director, string2
+  end
+end

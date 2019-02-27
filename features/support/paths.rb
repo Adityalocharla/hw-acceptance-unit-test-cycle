@@ -21,6 +21,13 @@ module NavigationHelpers
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
 
+    
+    when /^the details page for "(.*)"$/ then "/movies/#{Movie.find_by_title($1)[:id]}"
+      
+    when /^the Similar Movies page for "(.*)"$/ then "/movies/#{Movie.find_by_title($1)[:id]}/find_moviebydirector"
+    
+    when /^the edit page for "(.*)"$/ then "/movies/#{Movie.find_by_title($1)[:id]}/edit"
+
     else
       begin
         page_name =~ /^the (.*) page$/
@@ -31,6 +38,8 @@ module NavigationHelpers
           "Now, go and add a mapping in #{__FILE__}"
       end
     end
+    
+    
   end
 end
 
